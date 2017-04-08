@@ -1,0 +1,30 @@
+package projetocg;
+
+import java.util.ArrayList;
+
+/**
+ *
+ * @author Marina
+ */
+  
+public class ProjetoCG {
+
+    private ManipulacaoArquivos m;
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+  
+        //	ArrayList<ArrayList<String>> dados = new ArrayList<ArrayList<String>>();
+        //	dados = ManipulacaoArquivos.leArquivo("C:\\Paths_D.csv");
+        ArrayList<ArrayList<String>> leArq = ManipulacaoArquivos.leArquivo("C:\\Users\\Marina\\Desktop\\teste.txt");
+     // ManipulacaoArquivos.teste();
+        
+    }
+
+//    public ProjetoCG() {
+//        this.m = new ManipulacaoArquivos();
+//    }
+    
+}
