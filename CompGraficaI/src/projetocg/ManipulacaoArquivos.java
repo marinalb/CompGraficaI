@@ -89,9 +89,9 @@ public class ManipulacaoArquivos {
 
     }
 
-    public static void readFile(String arquivo) {
+    public static VideoDTO readFile(String arquivo) {
         ArrayList<Posicao[]> lista = new ArrayList<>();        
-        int proportion;
+        int proportion = 0;
         int frames;        
         try (FileReader fr = new FileReader(new File(arquivo)); BufferedReader buff = new BufferedReader(fr)) {
 
@@ -114,10 +114,12 @@ public class ManipulacaoArquivos {
                 }
                 linha = buff.readLine();
             }
-            Posicao[][] w = lista.toArray(new Posicao[][] {});           
+            Posicao[][] w = lista.toArray(new Posicao[][] {});   
+            return new VideoDTO(proportion, w);
         } catch (IOException ex) {
             System.out.println("eroo");
         }
+        return null;
     }
 
 }
