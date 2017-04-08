@@ -18,7 +18,8 @@ public class ProjetoCG {
   
         //	ArrayList<ArrayList<String>> dados = new ArrayList<ArrayList<String>>();
         //	dados = ManipulacaoArquivos.leArquivo("C:\\Paths_D.csv");
-        ArrayList<ArrayList<String>> leArq = ManipulacaoArquivos.leArquivo("C:\\Users\\Marina\\Desktop\\teste.txt");
+        //ArrayList<ArrayList<String>> leArq = ManipulacaoArquivos.leArquivo("C:\\Users\\Marina\\Desktop\\teste.txt");
+        ManipulacaoArquivos.readFile("C:\\Users\\PC\\Desktop\\Paths_D.txt");
      // ManipulacaoArquivos.teste();
         
     }
