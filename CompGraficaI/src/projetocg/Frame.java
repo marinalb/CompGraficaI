@@ -14,25 +14,25 @@ import java.util.HashMap;
  * @author PC
  */
 public class Frame {
-    HashMap<Point, Integer> frame;
+    HashMap<Integer, Point> frame;
 
     public Frame() {
        this.frame = new HashMap<>();
     }    
 
     public void setPos(int x, int y, int pessoa) {
-       frame.put(new Point(x,y), pessoa);
+       frame.put(pessoa, new Point(x,y));
     }
 
-    public int getPos(int x, int y) {
-        Point p = new Point(x, y);
-        if(frame.containsKey(p)){
-            return frame.get(p);
+    public Point getPos(int pessoa) {
+        
+        if(frame.containsKey(pessoa)){
+            return frame.get(pessoa);
         }
-        return 0;
+        return null;
     }
     
-    public boolean hasPos(int x, int y){
-        return frame.containsKey(new Point(x,y));
+    public boolean hasPessoa(int pessoa){
+        return frame.containsKey(pessoa);
     }
 }

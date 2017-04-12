@@ -93,7 +93,8 @@ public class ManipulacaoArquivos {
     }
 
     public static VideoDTO readFile(String arquivo) {
-        ArrayList<Frame> lista = new ArrayList<>(Collections.nCopies(1, null));        
+        ArrayList<Frame> lista = new ArrayList<>(Collections.nCopies(1, null));      
+        
         int pessoa = 0;
         int proportion = 0;
         int frames;
@@ -125,9 +126,9 @@ public class ManipulacaoArquivos {
                 
             }
             lista.remove(lista.size()-1);
-            return new VideoDTO(proportion, lista);
+            return new VideoDTO(proportion, lista, pessoa);
         } catch (IOException ex) {
-            System.out.println("eroo");
+            System.out.println(ex.getMessage());
         }
         return null;
     }

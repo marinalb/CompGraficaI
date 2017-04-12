@@ -14,11 +14,13 @@ import java.util.ArrayList;
  */
 public class VideoDTO {
     private int proportion;
+    private int pessoas;
     private ArrayList<Frame> frames;
 
-    public VideoDTO(int proportion, ArrayList<Frame> frames) {
+    public VideoDTO(int proportion, ArrayList<Frame> frames, int pessoas) {
         this.proportion = proportion;
         this.frames = frames;
+        this.pessoas = pessoas;
     }
 
     public int getProportion() {
@@ -27,6 +29,10 @@ public class VideoDTO {
 
     public void setProportion(int proportion) {
         this.proportion = proportion;
+    }
+
+    public int getPessoas() {
+        return pessoas;
     }
 
     public ArrayList<Frame> getPositions() {
