@@ -5,11 +5,14 @@
  */
 package projetocg;
 
+import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -90,9 +93,11 @@ public class ManipulacaoArquivos {
     }
 
     public static VideoDTO readFile(String arquivo) {
-        ArrayList<Posicao[]> lista = new ArrayList<>();        
+        ArrayList<Frame> lista = new ArrayList<>(Collections.nCopies(1, null));      
+        
+        int pessoa = 0;
         int proportion = 0;
-        int frames;        
+        int frames;
         try (FileReader fr = new FileReader(new File(arquivo)); BufferedReader buff = new BufferedReader(fr)) {
 
             String linha = buff.readLine();
@@ -100,24 +105,30 @@ public class ManipulacaoArquivos {
                 if (linha.contains("[")) {
                     proportion = Integer.parseInt(linha.substring(linha.indexOf('[') + 1, linha.indexOf(']')));
                 } else {
+                    pessoa++;
                     String[] aux = linha.split(("\t"));
                     frames = Integer.parseInt(aux[0]);
                     Pattern pat = Pattern.compile("([0-9]+,?)+");
                     Matcher mat = pat.matcher(aux[1]);
-                    Posicao[] allMatches = new Posicao[frames];
-                    for (int i = 0; i < allMatches.length; i++) {
+
+                    for (int i = 0; i < frames; i++) {
                         mat.find();
                         String aux1[] = mat.group().split(",");
-                        allMatches[i] = new Posicao(Integer.parseInt(aux1[0]), Integer.parseInt(aux1[1]), Integer.parseInt(aux1[2]));                        
+                        if(lista.get(Integer.parseInt(aux1[2])-1) == null){
+                            lista.add(Integer.parseInt(aux1[2])-1, new Frame());
+                        }
+                        lista.get(Integer.parseInt(aux1[2])-1).setPos(Integer.parseInt(aux1[0]), Integer.parseInt(aux1[1]), pessoa);
+                        //System.out.println("erro");
                     }
-                    lista.add(allMatches);
+                    //lista.add(allMatches);
                 }
                 linha = buff.readLine();
+                
             }
-            Posicao[][] w = lista.toArray(new Posicao[][] {});   
-            return new VideoDTO(proportion, w);
+            lista.remove(lista.size()-1);
+            return new VideoDTO(proportion, lista, pessoa);
         } catch (IOException ex) {
-            System.out.println("eroo");
+            System.out.println(ex.getMessage());
         }
         return null;
     }

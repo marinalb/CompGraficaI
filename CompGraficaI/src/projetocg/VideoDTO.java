@@ -6,17 +6,21 @@
 
 package projetocg;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author PC
  */
 public class VideoDTO {
     private int proportion;
-    private Posicao[][] positions;
+    private int pessoas;
+    private ArrayList<Frame> frames;
 
-    public VideoDTO(int proportion, Posicao[][] positions) {
+    public VideoDTO(int proportion, ArrayList<Frame> frames, int pessoas) {
         this.proportion = proportion;
-        this.positions = positions;
+        this.frames = frames;
+        this.pessoas = pessoas;
     }
 
     public int getProportion() {
@@ -27,12 +31,16 @@ public class VideoDTO {
         this.proportion = proportion;
     }
 
-    public Posicao[][] getPositions() {
-        return positions;
+    public int getPessoas() {
+        return pessoas;
     }
 
-    public void setPositions(Posicao[][] positions) {
-        this.positions = positions;
+    public ArrayList<Frame> getPositions() {
+        return frames;
+    }
+
+    public void setPositions(ArrayList<Frame> frames) {
+        this.frames = frames;
     }    
     
 }
