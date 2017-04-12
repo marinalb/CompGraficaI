@@ -5,11 +5,13 @@
  */
 package projetocg;
 
+import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -90,7 +92,9 @@ public class ManipulacaoArquivos {
     }
 
     public static VideoDTO readFile(String arquivo) {
-        ArrayList<Posicao[]> lista = new ArrayList<>();        
+        ArrayList<Frame> lista = new ArrayList<>();      
+        HashMap<Integer, ArrayList<Frame>> map;
+       
         int proportion = 0;
         int frames;        
         try (FileReader fr = new FileReader(new File(arquivo)); BufferedReader buff = new BufferedReader(fr)) {
@@ -103,18 +107,20 @@ public class ManipulacaoArquivos {
                     String[] aux = linha.split(("\t"));
                     frames = Integer.parseInt(aux[0]);
                     Pattern pat = Pattern.compile("([0-9]+,?)+");
-                    Matcher mat = pat.matcher(aux[1]);
-                    Posicao[] allMatches = new Posicao[frames];
-                    for (int i = 0; i < allMatches.length; i++) {
+                    Matcher mat = pat.matcher(aux[1]);                    
+                    HashMap<Point, Integer> plano = new HashMap<>();
+                    for (int i = 0; i < frames; i++) {
                         mat.find();
                         String aux1[] = mat.group().split(",");
-                        allMatches[i] = new Posicao(Integer.parseInt(aux1[0]), Integer.parseInt(aux1[1]), Integer.parseInt(aux1[2]));                        
+                        Frame f = lista.get(i);
+                        //allMatches[i] = new Frame(Integer.parseInt(aux1[0]), Integer.parseInt(aux1[1]), Integer.parseInt(aux1[2]));           
+                        System.out.println("erro");
                     }
-                    lista.add(allMatches);
+                    //lista.add(allMatches);
                 }
                 linha = buff.readLine();
             }
-            Posicao[][] w = lista.toArray(new Posicao[][] {});   
+            Frame[][] w = lista.toArray(new Frame[][] {});   
             return new VideoDTO(proportion, w);
         } catch (IOException ex) {
             System.out.println("eroo");

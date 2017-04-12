@@ -12,9 +12,9 @@ package projetocg;
  */
 public class VideoDTO {
     private int proportion;
-    private Posicao[][] positions;
+    private Frame[][] positions;
 
-    public VideoDTO(int proportion, Posicao[][] positions) {
+    public VideoDTO(int proportion, Frame[][] positions) {
         this.proportion = proportion;
         this.positions = positions;
     }
@@ -27,11 +27,11 @@ public class VideoDTO {
         this.proportion = proportion;
     }
 
-    public Posicao[][] getPositions() {
+    public Frame[][] getPositions() {
         return positions;
     }
 
-    public void setPositions(Posicao[][] positions) {
+    public void setPositions(Frame[][] positions) {
         this.positions = positions;
     }    
     
